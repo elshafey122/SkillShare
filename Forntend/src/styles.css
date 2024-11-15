@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  background-color: #fafafa;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.pointer {
+  cursor: pointer;
+}
+.myborder {
+  border: 1px solid #d1d7dc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+i {
+  cursor: pointer;
+}
+.clamp {
+  font-size: clamp(1rem, 10vw, 1rem);
+}
+@media (max-width: 917px) {
+  .newhide {
+    display: none;
+  }
+}
+/* //// */
+
+@media (min-width: 750px) {
+  .image {
+    max-width: 140%;
+  }
+}
+
+@media (max-width: 750px) {
+  .image {
+    width: 100%;
+    height: 100%;
+    margin-left: 25px;
+  }
+}
+
+/*  */
+@media (max-width: 700px) {
+  .center {
+    margin: auto;
+  }
+}

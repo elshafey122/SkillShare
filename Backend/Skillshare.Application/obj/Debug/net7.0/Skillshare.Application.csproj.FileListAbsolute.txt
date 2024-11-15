@@ -1,0 +1,8 @@
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.csproj.AssemblyReference.cache
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.Shared.Sharedresources.ar.resources
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.Shared.Sharedresources.en.resources
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.csproj.GenerateResource.cache
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.AssemblyInfoInputs.cache
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.AssemblyInfo.cs
+D:\SkillShare\Skillshare\Skillshare.Application\obj\Debug\net7.0\Skillshare.Application.csproj.CoreCompileInputs.cache

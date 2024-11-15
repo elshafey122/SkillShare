@@ -1,0 +1,40 @@
+<hr />
+<div class="container position-relative newhide" style="height: 500px">
+  <img src="../../../assets/Images/138d7fdb-b142-4fef-9543-ec83bd9e15cd.jpg" class="h-100 w-100" alt="" />
+  <mat-card class="bg-light text-black position-absolute d-flex justify-content-center p-4 rounded rounded-0"
+    style="top: 30%; width: 35%; left: 10%; height: 40%">
+    <h1 class="fw-bolder">Skill up with the Leading Up podcast</h1>
+    <p>
+      Listen to Season 5 and learn to work, lead, and live better. New episodes
+      drop on Wednesdays.
+    </p>
+  </mat-card>
+</div>
+
+<div>
+  
+  <div class="container mycontainer">
+    <mat-card *ngFor="let Course of Courses" class="pointer text-start example-card center"
+      [routerLink]="'courseDetails/' + Course.id">
+      <img class="m-auto w-100" mat-card-xl-image [src]="Course.courseImage" alt="Course Image" />
+      <div style="height: 40px">
+        <h5 style="font-size: 13px" class="fw-bolder text-start ms-2">
+          {{ Course.title }}
+        </h5>
+      </div>
+      <p class="text-start ms-2">
+        {{ Course.intrcutorName }}
+      </p>
+
+      <strong class="ms-2">{{
+        Course.price == 0 ? "free" : Course.price + " EGP"
+        }}</strong>
+    </mat-card>
+  </div>
+
+  <div>
+    <mat-paginator [length]="TotalCount" [pageSize]="pageSize" [pageSizeOptions]="[30, 35, 40, 45]"
+      (page)="onPageChange($event)" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

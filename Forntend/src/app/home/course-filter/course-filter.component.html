@@ -1,0 +1,110 @@
+<div class="container mt-3">
+  <h1 class="text-start" *ngIf="SearchString && SearchedCourses.length != 0">
+    {{ SearchedCourses.length }} results for {{ SearchString }}
+  </h1>
+
+  <h1 *ngIf="SearchedCourses.length == 0">
+    No Result Found For Your Search {{ SearchString }}
+  </h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Language</mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-radio-group>
+            <section class="example-section" *ngFor="let language of Languges">
+              <mat-radio-button class="example-margin" (change)="SelectCoursesByLanguge(language.id)"
+                [value]="language.id">
+                {{ language.name }}
+                <span *ngIf="language.id != null">({{ language.coursesCount }})</span>
+              </mat-radio-button>
+            </section>
+          </mat-radio-group>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Categories</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-radio-group>
+            <section class="example-section" *ngFor="let category of Categories">
+              <mat-radio-button class="example-margin" (change)="SelectCoursesByCategory(category.id)"
+                [value]="category.id">
+                {{ category.name }}
+                <span *ngIf="category.id != null">({{ category.coursesCount }})</span>
+              </mat-radio-button>
+            </section>
+          </mat-radio-group>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Video Duration</mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-radio-group>
+            
+            <mat-radio-button (change)="SelecteByDuration(null)" class="example-margin" [value]="null">
+              {{ "All" }}
+            </mat-radio-button>
+            <section class="example-section" *ngFor="let Hour of CourseDuration">
+              <mat-radio-button *ngIf="Hour.max < 1000000" (change)="SelecteByDuration(Hour)" class="example-margin"
+                [value]="Hour">
+                {{ Hour.min + " ~ " + Hour.max + " Hours" }}
+              </mat-radio-button>
+              <mat-radio-button *ngIf="Hour.max == 1000000" (change)="SelecteByDuration(Hour)" class="example-margin"
+                [value]="Hour">
+                {{ "16+ Hours" }}
+              </mat-radio-button>
+            </section>
+          </mat-radio-group>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Course Price</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-radio-group>
+            <mat-radio-button (change)="SelectePrice(null)" class="example-margin" [value]="null">
+              {{ "All" }}
+            </mat-radio-button>
+            <section class="example-section" *ngFor="let Price of CoursesPricesFilteration">
+              <mat-radio-button *ngIf="Price.max < 1000000" (change)="SelectePrice(Price)" class="example-margin"
+                [value]="Price">
+                {{ Price.min + " ~ " + Price.max + " EGP" }}
+              </mat-radio-button>
+              <mat-radio-button *ngIf="Price.max == 1000000" (change)="SelectePrice(Price)" class="example-margin"
+                [value]="Price">
+                {{ "1000+ EGP" }}
+              </mat-radio-button>
+            </section>
+          </mat-radio-group>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 d-flex flex-column gap-3">
+      <mat-card class="pointer" *ngFor="let Course of SearchedCourses" [routerLink]="'/courseDetails/' + Course.id">
+        <div class="d-flex w-100">
+          <div>
+            <img class="h-100" mat-card-lg-image [src]="Course.courseImage" alt="" />
+          </div>
+          <div class="ms-3">
+            <div class="h5">{{ Course.title }}</div>
+            <div class="h6">{{ Course.subTitle }}</div>
+            <p>{{ Course.intrcutorName }}</p>
+            <p>
+              {{
+              Course.totalMinutes < 60 ? Course.totalMinutes + " minutes" : (Course.totalMinutes / 60).toFixed(1)
+                + " hours" }} , {{ Course.lectureCount }} lecture </p>
+                <p class="fw-bolder mypositions top-0 end-0 me-2 mt-1">
+                  {{ Course.price == 0 ? "free" : Course.price + "$" }}
+                </p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillshare.Api", "Skillshare.Api\Skillshare.Api.csproj", "{C7533A18-6FF3-4BEF-8808-F7C29D190401}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B72E6F1-470A-4945-821C-93FB6116C561} = {0B72E6F1-470A-4945-821C-93FB6116C561}
+		{433201D3-FC84-4237-881D-A7E2EC1D3850} = {433201D3-FC84-4237-881D-A7E2EC1D3850}
+		{CC23EBE3-451D-4844-8C33-F1EE571C29DE} = {CC23EBE3-451D-4844-8C33-F1EE571C29DE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillshare.Application", "Skillshare.Application\Skillshare.Application.csproj", "{0B72E6F1-470A-4945-821C-93FB6116C561}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillshare.Contracts", "Skillshare.Contracts\Skillshare.Contracts.csproj", "{CC23EBE3-451D-4844-8C33-F1EE571C29DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillshare.Domain", "Skillshare.Domain\Skillshare.Domain.csproj", "{CD762438-7768-4C95-B68E-3236F603B488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skillshare.Infrastructure", "Skillshare.Infrastructure\Skillshare.Infrastructure.csproj", "{433201D3-FC84-4237-881D-A7E2EC1D3850}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7533A18-6FF3-4BEF-8808-F7C29D190401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7533A18-6FF3-4BEF-8808-F7C29D190401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7533A18-6FF3-4BEF-8808-F7C29D190401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7533A18-6FF3-4BEF-8808-F7C29D190401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B72E6F1-470A-4945-821C-93FB6116C561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B72E6F1-470A-4945-821C-93FB6116C561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B72E6F1-470A-4945-821C-93FB6116C561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B72E6F1-470A-4945-821C-93FB6116C561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC23EBE3-451D-4844-8C33-F1EE571C29DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC23EBE3-451D-4844-8C33-F1EE571C29DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC23EBE3-451D-4844-8C33-F1EE571C29DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC23EBE3-451D-4844-8C33-F1EE571C29DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD762438-7768-4C95-B68E-3236F603B488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD762438-7768-4C95-B68E-3236F603B488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD762438-7768-4C95-B68E-3236F603B488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD762438-7768-4C95-B68E-3236F603B488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433201D3-FC84-4237-881D-A7E2EC1D3850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433201D3-FC84-4237-881D-A7E2EC1D3850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433201D3-FC84-4237-881D-A7E2EC1D3850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433201D3-FC84-4237-881D-A7E2EC1D3850}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4136D7AD-D29A-45B8-BCE1-70DDFFEB0202}
+	EndGlobalSection
+EndGlobal

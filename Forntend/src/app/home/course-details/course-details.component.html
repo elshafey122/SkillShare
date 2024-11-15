@@ -1,0 +1,216 @@
+<div *ngIf="notFound" class="container d-flex justify-content-center align-items-center h-100">
+  <div class="card mt-5 p-5">
+    <div style="
+        border-radius: 200px;
+        height: 200px;
+        width: 200px;
+        background: #f8faf5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      ">
+      <i class="ms-1 fa-solid fa-circle-exclamation text-warning"
+        style="font-size: 100px; line-height: 200px; margin-left: -15px"></i>
+      <!-- <i class="color fa-regular fa-circle-xmark"></i> -->
+    </div>
+    <h1 class="text-center mt-5">Error 404</h1>
+    <p class="text-center">
+      Invalid request. Please provide valid information to proceed.
+    </p>
+  </div>
+</div>
+
+<div class="mt-3 container d-flex justify-content-center flex-column" *ngIf="CourseDetails">
+  <div (click)="OpenVideoDilog()" class="position-relative d-flex justify-content-center align-items-center">
+    <img [src]="CourseDetails.courseImage" width="100%"
+      class="position-relative pointer imgW d-block m-auto border border-2 border border-2 border-black" />
+    <div
+      class="myborder border-black position-absolute bg-light border border-1 d-flex justify-content-center align-content-center"
+      style="
+        background-color: fdfeff;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+      ">
+      <div class="pointer d-flex justify-content-center align-items-center w-100 h-100">
+        <i class="fs-1 fa-solid fa-play"></i>
+      </div>
+    </div>
+    <div class="pointer position-absolute text-light fw-bold fs-4" style="bottom: 5%">
+      Preview this course
+    </div>
+  </div>
+  <h1 class="text-start mt-2 fw-bold">{{ CourseDetails.courseTitle }}</h1>
+  <h1 class="text-start mt-2">{{ CourseDetails.courseSubTitle }}</h1>
+
+  <div class="d-flex gap-2">
+    <rating [(ngModel)]="CourseDetails.courseRating" [max]="5" class="fs-2" style="color: orange" [readonly]="true">
+    </rating>
+    <div class="text-primary">
+      {{ CourseDetails.studentInThisCourseCount }} students
+    </div>
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-user-tie"></i> Created by
+    <span class="pointer text-primary text-decoration-underline">{{
+      CourseDetails.instructoreDetaisl.name
+      }}</span>
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-triangle-exclamation"></i> Last update
+    {{ CourseDetails.lastUpdated | date }}
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-globe"></i> {{ CourseDetails.languge }}
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-hourglass-half"></i>
+    {{
+    CourseDetails.duration < 60 ? CourseDetails.duration + " minutes" : (CourseDetails.duration / 60).toFixed(1)
+      + " hours" }} </div>
+
+      <div class="mt-3">
+        <h1 class="fw-bold">Subscribe to Udemy’s top courses</h1>
+
+        <h4 class="fw-bold">
+          {{
+          CourseDetails.coursePrice != 0
+          ? "Course Price " + CourseDetails.coursePrice + " EGP"
+          : "free"
+          }}
+        </h4>
+
+        <div class="d-flex w-100 justify-content-between gap-3">
+          <div [routerLink]="'/coursestart/' + CourseId" *ngIf="CourseDetails.isInMylearning"
+            class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn">
+            <span>Go to course</span>
+          </div>
+
+          <div *ngIf="
+          !CourseDetails.isInCart &&
+          CourseDetails.coursePrice != 0 &&
+          !CourseDetails.isInMylearning
+        " (click)="AddToCart()"
+            class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn">
+            <span> Add to cart </span>
+          </div>
+
+          <div *ngIf="CourseDetails.coursePrice === 0 && !CourseDetails.isInMylearning" (click)="InrollFreeCourse()"
+            class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn">
+            <span> Buy this course</span>
+          </div>
+
+          <div (click)="RemoveCartItem()" *ngIf="CourseDetails.isInCart && !CourseDetails.isInMylearning"
+            class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn">
+            <span> Remove from cart </span>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="myborder mt-3 p-3">
+        <h1 class="fw-bold">What you'll learn</h1>
+        <div class="row">
+          <div *ngFor="let requirment of CourseDetails.whateyoulearn"
+            class="col-6 d-flex gap-2 justify-content-start align-content-center">
+            <i class="fs-4 fa-solid fa-check" style="color: rgb(107, 118, 118)"></i>
+            <div>
+              {{ requirment }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <h1 class="fw-bold">Course content</h1>
+        <div class="d-flex gap-1">
+          <div>{{ CourseDetails.contentSections.length + " sections" }}</div>
+          <div>{{ GetLecturesCount() + " lectures " }}</div>
+          <div></div>
+          <div>
+            {{
+            CourseDetails.duration < 60 ? CourseDetails.duration + " minutes" : (CourseDetails.duration / 60).toFixed(1)
+              + " hours" }} total length </div>
+          </div>
+        </div>
+
+        <mat-accordion class="mt-3">
+          <mat-expansion-panel *ngFor="let Section of CourseDetails.contentSections; let i = index">
+            <mat-expansion-panel-header>
+              <div>
+                <mat-panel-title> Section {{ i + 1 }}: </mat-panel-title>
+              </div>
+              <div>
+                
+                <mat-panel-description class="w-100 d-flex justify-content-between">
+                  <div class="w-100 d-flex justify-content-between align-items-center">
+                    <div>{{ Section.sectionTitle }}</div>
+                    <div class="text-primary">
+                      {{ Section.totalMinutes }}
+                      minutes
+                    </div>
+                  </div>
+                </mat-panel-description>
+              </div>
+
+            </mat-expansion-panel-header>
+
+
+            <div class="d-flex justify-content-between p-2" *ngFor="let lecture of Section.lectureContent">
+              <div>
+                <i class="fa-solid fa-circle-play text-primary"></i>
+
+                {{ lecture.lecturetitle }}
+              </div>
+              <div class="text-primary">{{ lecture.totalMinutes }} min</div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="mt-3">
+          <h1 class="fw-bold">Requirements</h1>
+          <ul>
+            <li *ngFor="let Requirment of CourseDetails.courrseRequirments">
+              {{ Requirment }}
+            </li>
+          </ul>
+        </div>
+        <div class="mt-3">
+          <h1 class="fw-bold">Who this course is for:</h1>
+          <ul>
+            <li *ngFor="let whoIsCourseFor of CourseDetails.whoIsCourseFor">
+              {{ whoIsCourseFor }}
+            </li>
+          </ul>
+        </div>
+        <div class="mt-3">
+          <h1 class="fw-bold">Description</h1>
+          <p>{{ CourseDetails.description }}</p>
+        </div>
+        <div>
+          <h1 class="fw-bold">Instructor</h1>
+
+          <div class="d-flex justify-content-start gap-2 align-items-center">
+            <div>
+              <img style="border-radius: 50%" [src]="
+            CourseDetails.instructoreDetaisl.instructorImage ??
+            '../../../../../assets/profileimagedefault/download.png'
+          " width="130px" height="130px" />
+            </div>
+            <div>
+              <h1 class="text-primary text-decoration-underline pointer">
+                {{ CourseDetails.instructoreDetaisl.name }}
+              </h1>
+
+              <h2 class="text-secondary">
+                {{ CourseDetails.instructoreDetaisl.headline }}
+              </h2>
+            </div>
+          </div>
+          <p class="mt-2 text-start">
+            {{ CourseDetails.instructoreDetaisl.biography }}
+          </p>
+        </div>
+      </div>

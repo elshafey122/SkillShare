@@ -1,0 +1,128 @@
+<mat-toolbar style="background-color: #fff" class="w-100 d-flex justify-content-between align-items-center">
+  <div class="w-100 d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between gap-2 align-items-center">
+      <div class="d-flex justify-content-between">
+        <button mat-icon-button (click)="drawer.toggle()" *ngIf="AuthService.isLoggedIn()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <div>
+          <div class="pointer newhide">
+            <img src="../../../assets/download.png" routerLink="" width="90px" alt="" />
+            <button mat-button [matMenuTriggerFor]="Categories">
+              Categories
+            </button>
+          </div>
+          <mat-menu #Categories="matMenu" class="mt-3">
+            <button mat-menu-item *ngFor="let Category of CategoryList" (click)="SendCategoryIdToSearch(Category.id)">
+              {{ Category.name }}
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+
+      <div class="position-relative">
+        <input type="text" placeholder="Search..." #inp (keyup.enter)="OnSearch(inp.value)" />
+
+        <i (click)="OnSearch(inp.value)" class="fa-solid fa-magnifying-glass position-absolute"
+          style="top: 30%; right: 5%"></i>
+      </div>
+
+    </div>
+
+
+    <div class="d-flex justify-content-end align-items-center">
+      <div class="font me-2 pointer myfont newhide" *ngIf="AuthService.isLoggedIn()" routerLink="instructor/landing">
+        Teach On Udemy
+      </div>
+      <div class="ms-2 font me-3 pointer myfont newhide" *ngIf="AuthService.isLoggedIn()" routerLink="/learning">
+        My Learning
+      </div>
+      <div *ngIf="AuthService.isLoggedIn()" class="newhide" routerLink="cart">
+        <i class="fa fa-cart-shopping fs-3 me-3 pointer"></i>
+      </div>
+
+      <div *ngIf="!AuthService.isLoggedIn()">
+        <button mat-raised-button class="ms-4" routerLink="auth/login">
+          Log in
+        </button>
+      </div>
+
+      <div>
+        <button mat-raised-button class="ms-2 bg-black text-white" routerLink="auth/register"
+          *ngIf="!AuthService.isLoggedIn()">
+          Sign up
+        </button>
+      </div>
+
+      <div class="ms-2 pointer" *ngIf="AuthService.isLoggedIn()">
+
+        <img width="40" height="40" class="rounded rounded-5" [src]="
+            Image == null || Image == undefined
+              ? '../../../assets/profileimagedefault/download.png'
+              : Image
+          " alt="" mat-button [matMenuTriggerFor]="menu" />
+          
+        <mat-menu #menu="matMenu" class="m-3">
+          <div class="d-flex align-items-center justify-content-around">
+            <img width="60" height="60" class="rounded rounded-5" [src]="
+                Image == null || Image == undefined
+                  ? '../../../assets/profileimagedefault/download.png'
+                  : Image
+              " />
+            <div>
+              <p class="fw-bolder m-0">{{ AuthService.GetName() }}</p>
+              <p style="font-size: 12px" class="m-0">
+                {{ AuthService.GetEmail() }}
+              </p>
+            </div>
+          </div>
+          <hr />
+          <button mat-menu-item routerLink="/learning">My learning</button>
+          <button mat-menu-item routerLink="cart">card</button>
+          <button mat-menu-item *ngIf="AuthService.isLoggedIn()" routerLink="instructor/landing">
+            Intstructor dashboard
+          </button>
+          <hr />
+          <button mat-menu-item routerLink="user/settings">
+            Account Settings
+          </button>
+          <button mat-menu-item routerLink="auth/register" *ngIf="AuthService.isLoggedIn()" (click)="logOut()">
+            Log out
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="false" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item routerLink="instructor/landing">
+        <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+      </mat-list-item>
+
+      <mat-list-item routerLink="">
+        <button mat-button><mat-icon>home</mat-icon> Home</button>
+      </mat-list-item>
+
+      <mat-list-item routerLink="user/settings">
+        <button mat-button><mat-icon>settings</mat-icon>Settings</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button><mat-icon>help</mat-icon>form</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button><mat-icon>analytics</mat-icon>Analytics</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
